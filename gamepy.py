@@ -43,7 +43,7 @@ while life>0:
                 speed[1] = -speed[1]
                 rebound+=1
                 #print "maccione"
-        if ballrect.top<baserect.bottom :
+        if ballrect.top>baserect.bottom :
                 ballrect.top=0
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
