@@ -1,6 +1,7 @@
 import sys, pygame ,time
 pygame.init()
 life=3
+rebound=0
 size = width, height = 1024,600
 speed = [10,10]
 speedb = [0,0]
@@ -18,34 +19,37 @@ while life>0:
 	for event in pygame.event.get():
                 key=pygame.key.get_pressed()
         	if event.type == pygame.QUIT or key[pygame.K_ESCAPE]: #Se premi la croce chiude 
-                        print "Vite="+str(life)
+                        print "Vite="+str(life)+" Rimbalzi="+str(rebound)
                         pygame.quit()
                         sys.exit()                
                 if key[pygame.K_a]:
-                        baserect.left=baserect.left-width/16      
+                        baserect.left=baserect.left-width/8      
                 if key[pygame.K_d]:
-                        baserect.right=baserect.right+width/16
+                        baserect.right=baserect.right+width/8
    	ballrect = ballrect.move(speed)
-   	baserect = baserect.move(speedb)
+   	#baserect = baserect.move(speedb)
     	if ballrect.left < 0 or ballrect.right > width:
         	speed[0] = -speed[0]
    	if ballrect.top < 0 or ballrect.bottom > height:
                 if ballrect.bottom>=height:
-                        life=life-1
+                        life-=1
                         print "Merda"
         	speed[1] = -speed[1]
         if baserect.left < 0 :
                 baserect.left=0
         if baserect.right > width:
-                baserect.left=width
-        if (baserect.left>=ballrect.right and ballrect.left<=baserect.left or baserect.right>=ballrect.left and baserect.right<=baserect.right) and baserect.top<=ballrect.bottom:
-                speed[1] = -speed[1]        
+                baserect.right=width
+        if ((ballrect.right>=baserect.left and ballrect.right<=baserect.right)or(ballrect.left>=baserect.left and ballrect.left<=baserect.right)) and  baserect.top<=ballrect.bottom:
+                speed[1] = -speed[1]
+                rebound+=1
+                #print "maccione"
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
 	pygame.display.flip()
 	time.sleep(0.00001)
-	
+if life==0 :
+        print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 
 	
 
