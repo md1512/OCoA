@@ -30,10 +30,13 @@ while life>0:
         	speed[0] = -speed[0]
    	if ballrect.top < 0 or ballrect.bottom > height:
                 if ballrect.bottom<=height:
-                        life=life-1	
+                        life=life-1
+                        print "Merda"
         	speed[1] = -speed[1]
         if baserect.left < 0 or baserect.right > width:
                 speedb=[0,0]
+        if (baserect.left<=ballrect.right or baserect.right>=ballrect.right) and baserect.top<=ballrect.bottom:
+                speed[1] = -speed[1]
         screen.fill(black)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
