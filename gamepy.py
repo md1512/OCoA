@@ -3,7 +3,7 @@ pygame.init()
 life=3
 rebound=0
 size = width, height = 1024,600
-speed = [10,10]
+speed = [5,5]
 speedb = [0,0]
 screen = pygame.display.set_caption='OCoA'
 screen = pygame.display.set_mode(size)
@@ -26,6 +26,10 @@ while life>0:
                         baserect.left=baserect.left-width/8      
                 if key[pygame.K_d]:
                         baserect.right=baserect.right+width/8
+                if key[pygame.K_LEFT]:
+                        baserect.left=baserect.left-width/4
+                if key[pygame.K_RIGHT]:
+                        baserect.right=baserect.right+width/4
    	ballrect = ballrect.move(speed)
    	#baserect = baserect.move(speedb)
     	if ballrect.left < 0 or ballrect.right > width:
@@ -33,7 +37,9 @@ while life>0:
    	if ballrect.top < 0 or ballrect.bottom > height:
                 if ballrect.bottom>=height:
                         life-=1
-                        print "Merda"
+                        print "Morto"
+                        
+                        
         	speed[1] = -speed[1]
         if baserect.left < 0 :
                 baserect.left=0
@@ -43,8 +49,8 @@ while life>0:
                 speed[1] = -speed[1]
                 rebound+=1
                 #print "maccione"
-        if ballrect.top>baserect.bottom :
-                ballrect.top=0
+        #if ballrect.top>baserect.bottom :
+        #       ballrect.top=0
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
