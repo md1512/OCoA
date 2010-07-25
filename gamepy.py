@@ -2,6 +2,7 @@ import sys, pygame ,time
 pygame.init()
 life=3
 rebound=0
+point=0
 size = width, height = 1024,600
 speed = [5,5]
 speedb = [0,0]
@@ -31,15 +32,12 @@ while life>0:
                 if key[pygame.K_RIGHT]:
                         baserect.right=baserect.right+width/4
    	ballrect = ballrect.move(speed)
-   	#baserect = baserect.move(speedb)
     	if ballrect.left < 0 or ballrect.right > width:
         	speed[0] = -speed[0]
    	if ballrect.top < 0 or ballrect.bottom > height:
                 if ballrect.bottom>=height:
                         life-=1
-                        print "Morto"
-                        
-                        
+                        print "Morto"                                                
         	speed[1] = -speed[1]
         if baserect.left < 0 :
                 baserect.left=0
@@ -48,16 +46,14 @@ while life>0:
         if ((ballrect.right>=baserect.left and ballrect.right<=baserect.right)or(ballrect.left>=baserect.left and ballrect.left<=baserect.right)) and  baserect.top<=ballrect.bottom:
                 speed[1] = -speed[1]
                 rebound+=1
-                #print "maccione"
-        #if ballrect.top>baserect.bottom :
-        #       ballrect.top=0
+                point+=point+rebound**life
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
 	pygame.display.flip()
 	time.sleep(0.00001)
 if life==0 :
-        print "Vite="+str(life)+" Rimbalzi="+str(rebound)
+        print "Vite="+str(life)+" Rimbalzi="+str(rebound)+" Punti="+str(point)
 
 	
 
