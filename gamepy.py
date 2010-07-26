@@ -1,12 +1,16 @@
 #!/usr/bin/python
 import sys, pygame ,time
-import block.py
+import block
+import pygame.font
+import pygame.surface
 pygame.init()
+pygame.font.init
+fontolo=pygame.font.Font(None, 25)
 life=3
 rebound=0
 point=0
 size = width, height = 1024,600
-speed = [10,10]
+speed = [8,8]
 speedb = [0,0]
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
@@ -21,6 +25,7 @@ baserect.right=(width)/2+40
 while life>0:
 	for event in pygame.event.get():
                 key=pygame.key.get_pressed()
+		
         	if event.type == pygame.QUIT or key[pygame.K_ESCAPE]: #Se premi la croce chiude 
                         print "Vite="+str(life)+" Rimbalzi="+str(rebound)
                         pygame.quit()
@@ -55,11 +60,11 @@ while life>0:
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
+	testo="Vite: "
+	testo=testo+str(life)
+	ren=fontolo.render(testo, 1, (25,255,25))
+	screen.blit(ren, (25, 25))
 	pygame.display.flip()
 	time.sleep(0.00001)
 if life==0 :
-        print "Vite="+str(life)+" Rimbalzi="+str(rebound)+" Punti="+str(point)
-
-	
-
-
+        print "Vite="+str(life)+" Rimbalzi="+str(rebound)
