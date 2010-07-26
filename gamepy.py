@@ -33,7 +33,7 @@ blocks=[]
 
 for i in range(0,width/lnblock):
 	blocks.append(block())
-	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,i)
+	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
 	set_img(blocks[i],"block2.png")
 	print get_pos(blocks[i])
 	stmp(blocks[i])
@@ -63,16 +63,35 @@ while life>0:
                 speed[1] = -speed[1]
                 rebound+=1
                 #point+=point+rebound**life
+	ltouched=0
+	utouched=0
+	for i in range(0,len(blocks)):
+		if (blocks[i].x ==ballrect.right or blocks[i].x+lnblock ==ballrect.left) and blocks[i].life>0 and ballrect.bottom<blocks[i].y+40 and ballrect.top> blocks[i].y :
+			ltouched=i+1
+		if (blocks[i].y+40 ==ballrect.top or blocks[i].y ==ballrect.bottom )and blocks[i].life>0 and ballrect.left<blocks[i].x+lnblock and ballrect.right>blocks[i].x:
+			utouched=i+1
+	if utouched != 0 :
+		
+		speed[1]=-speed[1]
+		blocks[utouched-1].life-=1
+		utouched=0
+		print "massimiliano"
+	if ltouched != 0 :
+		print "maccione"
+		speed[0]=-speed[0]
+		blocks[ltouched-1].life-=1
+		ltouched=0	
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
 	for i in range(0,len(blocks)):
-		stmp(blocks[i])		
+		if blocks[i].life>0:
+			stmp(blocks[i])		
 	testo="Vite: "
 	testo=testo+str(life)
 	testo=testo+" Rimbalzi: "
 	testo=testo+str(rebound)
-	testo=testo+" Score: "
+	testo=testo+" Score: "#A si'? rimbalzi(ita) punteggio(ita) e Score(eng)? 
 	testo=testo+"Manca conteggio!"
 	ren=fontolo.render(testo, 1, (25,255,25))
 	screen.blit(ren, (15, 10))
