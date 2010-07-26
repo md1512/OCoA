@@ -3,6 +3,14 @@ import sys, pygame ,time
 import block
 import pygame.font
 import pygame.surface
+
+def stmp(tmp):
+	itmp = pygame.image.load(tmp.get_img(a))
+	itmrect=itmp.get_rect()
+	itmrect.top=tmp.y
+	itmrect.left=tmp.x
+	screen.blit(itmp,itmrect)
+
 pygame.init()
 pygame.font.init
 fontolo=pygame.font.Font(None, 25)
@@ -11,7 +19,6 @@ rebound=0
 point=0
 size = width, height = 1024,600
 speed = [8,8]
-speedb = [0,0]
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
 back = pygame.image.load("background.png")
@@ -31,15 +38,6 @@ while life>0:
                         pygame.quit()
                         sys.exit()
                 loc=pygame.mouse.get_pos()
-                #print loc[0]
-                #if key[pygame.K_a]:
-                #        baserect.left=baserect.left-width/8      
-                #if key[pygame.K_d]:
-                #        baserect.right=baserect.right+width/8
-                #if key[pygame.K_LEFT]:
-                #        baserect.left=baserect.left-width/4
-                #if key[pygame.K_RIGHT]:
-                #        baserect.right=baserect.right+width/4
                 baserect.left=loc[0]-40
    	ballrect = ballrect.move(speed)
     	if ballrect.left < 0 or ballrect.right > width:
@@ -60,6 +58,10 @@ while life>0:
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
+	a=block
+	a.set_pos(a,1,1,1)
+	a.set_img(a,"block2.png")
+	stmp(a)
 	testo="Vite: "
 	testo=testo+str(life)
 	testo=testo+" Rimbalzi: "
@@ -72,4 +74,6 @@ while life>0:
 	time.sleep(0.00001)
 if life==0 :
         print "Vite="+str(life)+" Rimbalzi="+str(rebound)
+
+
 
