@@ -40,8 +40,3 @@ while life>0:
 	screen.blit(base, baserect)
 	pygame.display.flip()
 	time.sleep(0.00001)
-	
-
-	
-
-
