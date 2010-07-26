@@ -1,4 +1,6 @@
+#!/usr/bin/python
 import sys, pygame ,time
+import block.py
 pygame.init()
 life=3
 rebound=0
