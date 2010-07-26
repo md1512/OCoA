@@ -62,9 +62,14 @@ while life>0:
 	screen.blit(base, baserect)
 	testo="Vite: "
 	testo=testo+str(life)
+	testo=testo+" Rimbalzi: "
+	testo=testo+str(rebound)
+	testo=testo+" Score: "
+	testo=testo+"Manca conteggio!"
 	ren=fontolo.render(testo, 1, (25,255,25))
-	screen.blit(ren, (25, 25))
+	screen.blit(ren, (15, 10))
 	pygame.display.flip()
 	time.sleep(0.00001)
 if life==0 :
         print "Vite="+str(life)+" Rimbalzi="+str(rebound)
+
