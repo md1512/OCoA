@@ -1,11 +1,10 @@
 #!/usr/bin/python
-import sys, pygame ,time
-import block
-import pygame.font
-import pygame.surface
+import sys,time,random
+from libblock import *
+import pygame,pygame.font,pygame.surface
 
 def stmp(tmp):
-	itmp = pygame.image.load(tmp.get_img(a))
+	itmp = pygame.image.load(get_img(tmp))
 	itmrect=itmp.get_rect()
 	itmrect.top=tmp.y
 	itmrect.left=tmp.x
@@ -29,6 +28,12 @@ ballrect = ball.get_rect()
 backrect= back.get_rect()
 baserect.bottom=height-10
 baserect.right=(width)/2+40
+blocks=[]
+for i in range(0,width/100):
+	blocks.append(block())
+	set_pos(blocks[i],i*100,0,i)
+	set_img(blocks[i],"block2.png")
+	stmp(blocks[i])
 while life>0:
 	for event in pygame.event.get():
                 key=pygame.key.get_pressed()
@@ -58,10 +63,8 @@ while life>0:
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
-	a=block
-	a.set_pos(a,1,1,1)
-	a.set_img(a,"block2.png")
-	stmp(a)
+	for i in range(0,len(blocks)):
+		stmp(blocks[i])		
 	testo="Vite: "
 	testo=testo+str(life)
 	testo=testo+" Rimbalzi: "
