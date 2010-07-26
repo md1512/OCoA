@@ -1,4 +1,3 @@
-import pygame
 class block:
 	x=0
 	y=0
