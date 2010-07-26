@@ -17,6 +17,7 @@ life=3
 rebound=0
 point=0
 size = width, height = 1024,600
+lnblock=100
 speed = [8,8]
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
@@ -27,12 +28,14 @@ baserect = base.get_rect()
 ballrect = ball.get_rect()
 backrect= back.get_rect()
 baserect.bottom=height-10
-baserect.right=(width)/2+40
+baserect.right=(width)/20+40
 blocks=[]
-for i in range(0,width/100):
+
+for i in range(0,width/lnblock):
 	blocks.append(block())
-	set_pos(blocks[i],i*100,0,i)
+	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,i)
 	set_img(blocks[i],"block2.png")
+	print get_pos(blocks[i])
 	stmp(blocks[i])
 while life>0:
 	for event in pygame.event.get():
