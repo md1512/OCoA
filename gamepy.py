@@ -28,7 +28,7 @@ baserect = base.get_rect()
 ballrect = ball.get_rect()
 backrect= back.get_rect()
 baserect.bottom=height-10
-baserect.right=(width)/20+40
+baserect.right=(width)/2+40
 blocks=[]
 
 for i in range(0,width/lnblock):
@@ -91,7 +91,7 @@ while life>0:
 	testo=testo+str(life)
 	testo=testo+" Rimbalzi: "
 	testo=testo+str(rebound)
-	testo=testo+" Score: "#A si'? rimbalzi(ita) punteggio(ita) e Score(eng)?  :PPPPPP
+	testo=testo+" Score: "#A si'? rimbalzi(ita) Vite(ita) e Score(eng)?  :PPPPPP
 	testo=testo+"Manca conteggio!"
 	ren=fontolo.render(testo, 1, (25,255,25))
 	screen.blit(ren, (15, 10))
