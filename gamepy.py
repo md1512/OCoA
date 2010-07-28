@@ -30,7 +30,8 @@ backrect= back.get_rect()
 baserect.bottom=height-10
 baserect.right=(width)/2+40
 blocks=[]
-
+lastf=time.time()
+fps=0
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
@@ -99,10 +100,13 @@ while life>0:
 	testo=testo+str(rebound)
 	testo=testo+" Score: "#A si'? rimbalzi(ita) Vite(ita) e Score(eng)?  :PPPPPP
 	testo=testo+"Manca conteggio!"
+	fps=60/(time.time()-lastf)
+	lastf=time.time()
+	testo+=" FPS: "+str(fps)
 	ren=fontolo.render(testo, 1, (25,255,25))
 	screen.blit(ren, (15, 10))
 	pygame.display.flip()
-	time.sleep(0.0001)
+	time.sleep(0.001)
 if life==0 :
         print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 
