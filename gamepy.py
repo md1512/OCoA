@@ -18,12 +18,12 @@ rebound=0
 point=0
 size = width, height = 1024,600
 lnblock=100
-speed = [8,8]
+speed = [3,3]
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
-back = pygame.image.load("background.png")
+back = pygame.image.load("background.png").convert()
 ball = pygame.image.load("ball.png")
-base = pygame.image.load("base.png")
+base = pygame.image.load("base.png").convert()
 baserect = base.get_rect()
 ballrect = ball.get_rect()
 backrect= back.get_rect()
