@@ -100,9 +100,9 @@ while life>0:
 	testo=testo+str(rebound)
 	testo=testo+" Score: "#A si'? rimbalzi(ita) Vite(ita) e Score(eng)?  :PPPPPP
 	testo=testo+"Manca conteggio!"
-	fps=60/(time.time()-lastf)
+	fps=1/(time.time()-lastf)
 	lastf=time.time()
-	testo+=" FPS: "+str(fps)
+	testo+=" FPS: "+str(int(fps))
 	ren=fontolo.render(testo, 1, (25,255,25))
 	screen.blit(ren, (15, 10))
 	pygame.display.flip()
