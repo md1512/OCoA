@@ -24,7 +24,6 @@ baserect.bottom=height-10
 baserect.right=(width)/2+40
 blocks=[]
 lastf=time.time()
-fps=0
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
