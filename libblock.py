@@ -28,8 +28,8 @@ def get_img(self):
 def get_all(self):
 	return (self.x,self.y,self.life,self.img)
 def createrect(self):
-	self.imgsr=pygame.image.load(self.img)
+	self.imgsr=pygame.image.load(self.img).convert()
 	self.rect=self.imgsr.get_rect()
 	self.rect.top=self.y
 	self.rect.left=self.x
-	#return imgsr
+	

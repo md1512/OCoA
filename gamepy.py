@@ -3,13 +3,6 @@ import sys,time,random
 from libblock import *
 import pygame,pygame.font,pygame.surface
 
-def stmp(tmp):
-	itmp = pygame.image.load(get_img(tmp))
-	itmrect=itmp.get_rect()
-	itmrect.top=tmp.y
-	itmrect.left=tmp.x
-	screen.blit(itmp,itmrect)
-
 pygame.init()
 pygame.font.init
 fontolo=pygame.font.Font(None, 25)
@@ -35,10 +28,8 @@ fps=0
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
-	set_img(blocks[i],"block3.png")
-	print get_pos(blocks[i])
-	createrect(blocks[i])
-	#stmp(blocks[i])
+	set_img(blocks[i],"block3.png")	
+	createrect(blocks[i])	
 while life>0:
 	for event in pygame.event.get():
                 key=pygame.key.get_pressed()
@@ -64,30 +55,14 @@ while life>0:
         if ((ballrect.right>=baserect.left and ballrect.right<=baserect.right)or(ballrect.left>=baserect.left and ballrect.left<=baserect.right)) and  baserect.top<=ballrect.bottom:
                 speed[1] = -speed[1]
                 rebound+=1
-                #point+=point+rebound**life
-	#ltouched=0
-	#utouched=0
-	for i in range(0,len(blocks)):
-		
+        for i in range(0,len(blocks)):		
 		if(blocks[i].rect.colliderect(ballrect)and blocks[i].life>0):
-			speed[1]=-speed[1]
-			speed[0]=-speed[0]
+			if(blocks[i].rect.left<ballrect.right or blocks[i].rect.right>ballrect.left):
+				speed[0]=-speed[0]				
+			if(blocks[i].rect.top<ballrect.bottom or blocks[i].rect.bottom>ballrect.top):
+				speed[1]=-speed[1]
 			blocks[i].life-=1
-	#	if (blocks[i].x ==ballrect.right or blocks[i].x+lnblock ==ballrect.left) and blocks[i].life>0 and ballrect.bottom<blocks[i].y+20 and ballrect.top> blocks[i].y :
-	#		ltouched=i+1
-	#	if (blocks[i].y+20 ==ballrect.top or blocks[i].y ==ballrect.bottom )and blocks[i].life>0 and ballrect.left<blocks[i].x+lnblock and ballrect.right>blocks[i].x:
-	#		utouched=i+1
-	#if utouched != 0 :
-	#	
-	#	speed[1]=-speed[1]
-	#	blocks[utouched-1].life-=1
-	#	utouched=0
-	#	print "massimiliano"
-	#if ltouched != 0 :
-	#	print "maccione"
-	#	speed[0]=-speed[0]
-	#	blocks[ltouched-1].life-=1
-	#	ltouched=0	
+	
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
@@ -109,6 +84,3 @@ while life>0:
 	time.sleep(0.001)
 if life==0 :
         print "Vite="+str(life)+" Rimbalzi="+str(rebound)
-
-
-
