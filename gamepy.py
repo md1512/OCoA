@@ -2,6 +2,8 @@
 import sys,time,random
 from libblock import *
 import pygame,pygame.font,pygame.surface
+from configuration import *
+
 
 pygame.init()
 pygame.font.init
@@ -9,9 +11,7 @@ fontolo=pygame.font.Font(None, 25)
 life=3
 rebound=0
 point=0
-size = width, height = 1024,600
-lnblock=100
-speed = [3,3]
+
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
 back = pygame.image.load("background.png").convert()
