@@ -11,7 +11,7 @@ fontolo=pygame.font.Font(None, 25)
 life=3
 rebound=0
 point=0
-
+lrebound=0  #last rebound which hit a block
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
 back = pygame.image.load("background.png").convert()
@@ -60,7 +60,12 @@ while life>0:
 				speed[0]=-speed[0]				
 			if(blocks[i].rect.top<ballrect.bottom or blocks[i].rect.bottom>ballrect.top):
 				speed[1]=-speed[1]
+			
 			blocks[i].life-=1
+			point+=float(life)*float(1.0/float(1+rebound-lrebound))
+			#print (life)*(1/(1+rebound-lrebound)),rebound,lrebound
+			lrebound=rebound
+			#print (life)*(1/(1+rebound-lrebound)),rebound,lrebound
 	
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
@@ -72,8 +77,8 @@ while life>0:
 	testo=testo+str(life)
 	testo=testo+" Rimbalzi: "
 	testo=testo+str(rebound)
-	testo=testo+" Score: "#A si'? rimbalzi(ita) Vite(ita) e Score(eng)?  :PPPPPP
-	testo=testo+"Manca conteggio!"
+	testo=testo+" Score: "
+	testo=testo+str(point)
 	fps=1/(time.time()-lastf)
 	lastf=time.time()
 	testo+=" FPS: "+str(int(fps))

@@ -7,12 +7,12 @@ class block:
 	imgsr=pygame.Surface((0,0))
 	rect=pygame.Rect(0,0,0,0)
 
-def init__(self,x,y,life,img):
-	self.x=x
-	self.y=y
-	self.life=life
-	self.img=img
-	createrect(self)
+##def init__(self,x,y,life,img):
+##	self.x=x
+##	self.y=y
+##	self.life=life
+##	self.img=img
+##	createrect(self)
 
 def set_pos(self,ex,ey,el):
 	self.x=ex
