@@ -83,5 +83,10 @@ while life>0:
 	screen.blit(ren, (15, 10))
 	pygame.display.flip()
 	time.sleep(0.001)
-if life==0 :
-        print "Vite="+str(life)+" Rimbalzi="+str(rebound)
+print "Vite="+str(life)+" Rimbalzi="+str(rebound)
+
+pause = pygame.image.load("pause.png")
+pauserect=pause.get_rect()
+screen.blit(pause,pauserect)
+pygame.display.flip()
+time.sleep(1)
