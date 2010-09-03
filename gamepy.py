@@ -63,10 +63,7 @@ while life>0:
 			
 			blocks[i].life-=1
 			point+=float(life)*float(1.0/float(1+rebound-lrebound))
-			#print (life)*(1/(1+rebound-lrebound)),rebound,lrebound
 			lrebound=rebound
-			#print (life)*(1/(1+rebound-lrebound)),rebound,lrebound
-	
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)
 	screen.blit(base, baserect)
