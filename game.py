@@ -3,12 +3,12 @@ import sys,time,random
 from libblock import *
 import pygame,pygame.font,pygame.surface
 from configuration import *
-
+import  screeninput
 
 pygame.init()
 pygame.font.init
 fontolo=pygame.font.Font(None, 25)
-life=3
+life=0
 rebound=0
 point=0
 lrebound=0  #last rebound which hit a block
@@ -84,9 +84,28 @@ while life>0:
 	pygame.display.flip()
 	time.sleep(0.001)
 print "Vite="+str(life)+" Rimbalzi="+str(rebound)
-
-pause = pygame.image.load("pause.png")
-pauserect=pause.get_rect()
-screen.blit(pause,pauserect)
-pygame.display.flip()
-time.sleep(1)
+name=""
+while 1:
+        pause = pygame.image.load("pause.png")
+        pauserect=pause.get_rect()
+        screen.blit(back,backrect)
+	screen.blit(ball, ballrect)
+	screen.blit(base, baserect)
+	for i in range(0,len(blocks)):
+		if blocks[i].life>0:
+			screen.blit(blocks[i].imgsr,blocks[i].rect)
+	for event in pygame.event.get():
+                key=pygame.key.get_pressed()
+                name+=screeninput.whatchar(key)
+                if key[pygame.K_BACKSPACE]:
+                        name=name[:len(name)-1]
+                if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
+                        print name
+                        pygame.quit()
+                        sys.exit()
+        ren=fontolo.render(name+" : "+str(point), 1, (255,255,255))
+        screen.blit(pause,pauserect)
+        screen.blit(ren, (width/2,height/2))
+        pygame.display.flip()
+        
+        
