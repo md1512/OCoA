@@ -1,14 +1,16 @@
 #!/usr/bin/python
-import sys,time,random
-from libblock import *
-import pygame,pygame.font,pygame.surface
+import pygame,pygame.font,pygame.surface#Pygame
+
+import sys,time,random#System
+
+from libblock import *#Ours
 from configuration import *
-import  screeninput
+import  screeninput,save
 
 pygame.init()
 pygame.font.init
 fontolo=pygame.font.Font(None, 25)
-life=0
+life=3
 rebound=0
 point=0
 lrebound=0  #last rebound which hit a block
@@ -99,6 +101,9 @@ while 1:
                 name+=screeninput.whatchar(key)
                 if key[pygame.K_BACKSPACE]:
                         name=name[:len(name)-1]
+                if key[pygame.K_RETURN]:
+                        print "IO SALVO"
+			save.save(name,point)
                 if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
                         print name
                         pygame.quit()
