@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import pygame,pygame.font,pygame.surface#Pygame
 
-import sys,time,random#System
+import sys,time,random,math#System
 
 from libblock import *#Ours
 from configuration import *
@@ -26,17 +26,21 @@ baserect.bottom=height-10
 baserect.right=(width)/2+40
 blocks=[]
 lastf=time.time()
+last0=time.time()
+f0=0
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
 	set_img(blocks[i],"block3.png")	
 	createrect(blocks[i])	
 while life>0:
+        f0+=1
 	for event in pygame.event.get():
                 key=pygame.key.get_pressed()
 		
         	if event.type == pygame.QUIT or key[pygame.K_ESCAPE]: #Se premi la croce chiude 
                         print "Vite="+str(life)+" Rimbalzi="+str(rebound)
+                        print str(f0/(time.time()-last0))
                         pygame.quit()
                         sys.exit()
                 loc=pygame.mouse.get_pos()
@@ -56,6 +60,7 @@ while life>0:
         if ((ballrect.right>=baserect.left and ballrect.right<=baserect.right)or(ballrect.left>=baserect.left and ballrect.left<=baserect.right)) and  baserect.top<=ballrect.bottom:
                 speed[1] = -speed[1]
                 rebound+=1
+##                speed[1] = -speed[1]
         for i in range(0,len(blocks)):		
 		if(blocks[i].rect.colliderect(ballrect)and blocks[i].life>0):
 			if(blocks[i].rect.left<ballrect.right or blocks[i].rect.right>ballrect.left):
@@ -84,7 +89,7 @@ while life>0:
 	ren=fontolo.render(testo, 1, (25,255,25))
 	screen.blit(ren, (15, 10))
 	pygame.display.flip()
-	time.sleep(0.001)
+	#time.sleep(0.001)
 print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 name=""
 while 1:
@@ -102,8 +107,10 @@ while 1:
                 if key[pygame.K_BACKSPACE]:
                         name=name[:len(name)-1]
                 if key[pygame.K_RETURN]:
-                        print "IO SALVO"
+                        #print "IO SALVO"
 			save.save(name,point)
+			pygame.quit()
+                        sys.exit()
                 if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
                         print name
                         pygame.quit()
