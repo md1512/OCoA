@@ -16,9 +16,9 @@ point=0
 lrebound=0  #last rebound which hit a block
 screen = pygame.display.set_caption('OCoA')
 screen = pygame.display.set_mode(size)
-back = pygame.image.load("background.png").convert()
-ball = pygame.image.load("ball.png")#Se necessita' della trasparenza non si deve convertire 
-base = pygame.image.load("base.png").convert()
+back = pygame.image.load(IMGPATH+"background.png").convert()
+ball = pygame.image.load(IMGPATH+"ball.png")#Se necessita' della trasparenza non si deve convertire 
+base = pygame.image.load(IMGPATH+"base.png").convert()
 baserect = base.get_rect()
 ballrect = ball.get_rect()
 backrect= back.get_rect()
@@ -31,7 +31,7 @@ f0=0
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
-	set_img(blocks[i],"block3.png")	
+	set_img(blocks[i],IMGPATH+"block3.png")	
 	createrect(blocks[i])	
 while life>0:
         f0+=1
@@ -93,7 +93,7 @@ while life>0:
 print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 name=""
 while 1:
-        pause = pygame.image.load("pause.png")
+        pause = pygame.image.load(IMGPATH+"pause.png")
         pauserect=pause.get_rect()
         screen.blit(back,backrect)
 	screen.blit(ball, ballrect)

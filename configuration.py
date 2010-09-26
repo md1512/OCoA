@@ -4,3 +4,4 @@ lnblock=100
 speed = [3,3]
 PATH=os.environ['HOME']+"/.ocoa/"
 PATHDB=PATH+"saved"
+IMGPATH="images/"
