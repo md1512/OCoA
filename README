@@ -1,0 +1,11 @@
+
+Run
+To run OCoA you need (on ubuntu)
+-python2.6 (or higher but non python3.X series)
+-python-sqlite
+
+
+
+
+License:
+OCoA is released under GPLv3 http://www.gnu.org/licenses/gpl-3.0.txt
