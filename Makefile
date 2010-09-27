@@ -1,3 +1,3 @@
-#Makefile for a ocoa
+#Makefile for OCoA
 clean:
 	rm -f *.pyc *~
