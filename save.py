@@ -1,5 +1,6 @@
 import time,sqlite3,os
 import configuration
+
 def save(name,score):
     res=0    
     conn = sqlite3.connect(configuration.PATHDB)#Database    
@@ -29,4 +30,20 @@ def save(name,score):
     conn.commit()
     conn.close()    
 def hiscore():
-    print "mac"
+    t=[]
+    conn = sqlite3.connect(configuration.PATHDB)#Database    
+    c = conn.cursor()
+    try:
+        c.execute("SELECT score,id  FROM SCORE ORDER BY score DESC LIMIT 0,5;")
+        a= c.fetchall()
+        print len(a),a
+        for i in a:
+            print "SELECT name FROM USER WHERE id="+str(i[1])
+            c.execute("SELECT name FROM USER WHERE id="+str(i[1]))
+            b=c.fetchone()
+            print i[0],b[0]
+            t.append(str(b[0])+ ":"+str(i[0]))
+        print t        
+    except:
+        print "Error in save.hiscore()"
+    return t
