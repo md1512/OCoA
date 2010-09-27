@@ -92,7 +92,14 @@ while life>0:
 	#time.sleep(0.001)
 print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 name=""
+hs=[]
+hst=save.hiscore()
+
+for j in hst:
+        hs.append(fontolo.render(j, 1, (255,255,255)))
+
 while 1:
+        
         pause = pygame.image.load(IMGPATH+"pause.png")
         pauserect=pause.get_rect()
         screen.blit(back,backrect)
@@ -116,6 +123,12 @@ while 1:
                         pygame.quit()
                         sys.exit()
         ren=fontolo.render(name+" : "+str(point), 1, (255,255,255))
+        n=1
+        
+        for i in hs:
+                screen.blit(i, (width/2,height/2+(n*16)))
+                n+=1
+        
         screen.blit(pause,pauserect)
         screen.blit(ren, (width/2,height/2))
         pygame.display.flip()
