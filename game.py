@@ -5,7 +5,7 @@ import sys,time,random,math#System
 
 from libblock import *#Ours
 from configuration import *
-import  screeninput,save,somefunction
+import  screeninput,save
 
 pygame.init()
 pygame.font.init
@@ -59,26 +59,40 @@ while life>0:
                 baserect.right=width
         if ((ballrect.right>=baserect.left and ballrect.right<=baserect.right)or(ballrect.left>=baserect.left and ballrect.left<=baserect.right)) and  baserect.top<=ballrect.bottom:
                 mp=[(ballrect.right+ballrect.left)/2,height-15]
-                op=somefunction.prefpos(speed,5,mp)
-                alpha=somefunction.getalpha(op[0],op[1],mp[0],mp[1])
-                print math.degrees(alpha),speed
-                cp=[(baserect.right+baserect.left)/2,height+200]#Look here 200
-                beta=somefunction.getalpha(mp[0],mp[1],cp[0],cp[1])
-                print math.degrees(beta),math.degrees(2*(beta-alpha)+alpha),4*math.sin(2*(beta-alpha)+alpha),4*math.cos(2*(beta-alpha)+alpha)
-                #speed[1] = -speed[1]
-                delta=2*(beta-alpha)+alpha
-                
-                if delta<0:
-                        delta=0.017453292519943295
-                if delta>3.1415926535897931:
-                        delta=3.12413936106985
-                speed[0]=4*math.sin(2*(beta-alpha)+alpha)
-                speed[1]=4*math.cos(2*(beta-alpha)+alpha)
-                        
+                cp=[(baserect.right+baserect.left)/2,height]
+                if mp[0]<cp[0]:
+                        print "Left"
 
-                
+                        if mp[0]<(cp[0]-35):
+                                speed[0]=-3
+                                speed[1]=-2
+                        else:
+                                if mp[0]>(cp[0]-35) and mp[0]<(cp[0]-25):
+                                        speed[0]=-2
+                                        speed[1]=-3
+                                else :
+                                        if mp[0]>cp[0]-25:
+                                                speed[0]=-1
+                                                speed[1]=-4
+                else:
+                        print "Right"
+                        if mp[0]>(cp[0]+35):
+                                speed[0]=3
+                                speed[1]=-2
+                        else:
+                                if mp[0]<(cp[0]+25) and mp[0]<(cp[0]+35):
+                                        speed[0]=2
+                                        speed[1]=-3
+                                else :
+                                        if mp[0]<(cp[0]+25):
+                                                speed[0]=1
+                                                speed[1]=-4
+                if mp[0]>cp[0]-5 and mp[0]<(cp[0]+5):
+                        print "Center"
+                        speed[0]=0
+                        speed[1]=-4
+                        
                 rebound+=1
-##                speed[1] = -speed[1]
         for i in range(0,len(blocks)):		
 		if(blocks[i].rect.colliderect(ballrect)and blocks[i].life>0):
 			if(blocks[i].rect.left<ballrect.right or blocks[i].rect.right>ballrect.left):
