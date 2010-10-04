@@ -1,4 +1,4 @@
-#!/usr/bin/python
+
 import pygame,pygame.font,pygame.surface#Pygame
 
 import sys,time,random,math#System

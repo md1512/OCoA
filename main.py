@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 import sqlite3,os
 try :
     os.mkdir(os.environ['HOME']+"/.ocoa")#Directory
