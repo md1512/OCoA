@@ -1,11 +1,18 @@
 
-import pygame,pygame.font,pygame.surface#Pygame
+import pygame
+import pygame.font
+import pygame.surface#Pygame
 
-import sys,time,random,math#System
+import sys
+import time
+import random
+import math#System
 
 from libblock import *#Ours
 from configuration import *
-import  screeninput,save
+
+import screeninput
+import save
 
 pygame.init()
 pygame.font.init

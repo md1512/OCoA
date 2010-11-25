@@ -1,12 +1,14 @@
 #!/usr/bin/env python2
 import sqlite3,os
+from configuration import *
+
 try :
-    os.mkdir(os.environ['HOME']+"/.ocoa")#Directory
+    os.mkdir(PATH)#Directory
 except OSError:
     print "Directory exist"
-PATH=os.environ['HOME']+"/.ocoa/"
+#PATH=os.environ['HOME']+"/.ocoa/"
 
-conn = sqlite3.connect(PATH+"saved")#Database
+conn = sqlite3.connect(PATHDB)#Database
 c = conn.cursor()
 try :
     c.execute("SELECT * from USER;")
