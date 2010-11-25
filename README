@@ -1,13 +1,13 @@
 
 Run
-	To run OCoA on GNU\Linux
+	To run OCoA on GNU\Linux you need 
 		*python2.6 (or higher but not python3.X series)
 		*python-pygame
 		*python-sqlite
-	To run OCoA on Windows
-		*You need the same things about GNU\Linux, but for Windows
+	To run OCoA on Windows you need 
+		*The same things about GNU\Linux, but for Windows
 
-
+	And then run main.py
 
 License:
 	OCoA is released under GPLv3 http://www.gnu.org/licenses/gpl-3.0.txt
