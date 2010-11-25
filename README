@@ -1,10 +1,11 @@
 
 Run
-	To run OCoA you need (on ubuntu)
-	-python2.6 (or higher but non python3.X series)
-	-python-pygame
-	-python-sqlite
-
+	To run OCoA on GNU\Linux
+		*python2.6 (or higher but not python3.X series)
+		*python-pygame
+		*python-sqlite
+	To run OCoA on Windows
+		*You need the same things about GNU\Linux, but for Windows
 
 
 
