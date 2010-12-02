@@ -35,7 +35,7 @@ blocks=[]
 lastf=time.time()
 last0=time.time()
 f0=0
-time_to_zzz=0.001
+time_to_zzz=0.00001
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
@@ -132,8 +132,10 @@ while life>0:
 	if fps>fpslimit:
 		time_to_zzz+=0.00001
 	else:
-		if fps!=fpslimit:
+		if fps!=fpslimit and fps>0.0:
 			time_to_zzz-=0.00001
+	if time_to_zzz<0.0:
+		time_to_zzz-=0.0
 	time.sleep(time_to_zzz)
 print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 name=""
