@@ -35,6 +35,7 @@ blocks=[]
 lastf=time.time()
 last0=time.time()
 f0=0
+time_to_zzz=0.001
 for i in range(0,width/lnblock):
 	blocks.append(block())
 	set_pos(blocks[i],i*(width/10)+(width/10-lnblock)/2,20,1)
@@ -128,7 +129,12 @@ while life>0:
 	ren=fontolo.render(testo, 1, (25,255,25))
 	screen.blit(ren, (15, 10))
 	pygame.display.flip()
-	#time.sleep(0.001)
+	if fps>fpslimit:
+		time_to_zzz+=0.00001
+	else:
+		if fps!=fpslimit:
+			time_to_zzz-=0.00001
+	time.sleep(time_to_zzz)
 print "Vite="+str(life)+" Rimbalzi="+str(rebound)
 name=""
 hs=[]
